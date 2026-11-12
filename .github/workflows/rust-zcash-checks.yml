@@ -20,10 +20,9 @@ jobs:
       - name: Read Rust toolchain
         run: echo "RUST_TOOLCHAIN=$(cat rust-toolchain)" >> $GITHUB_ENV
 
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
-          override: true
           components: rustfmt
           target: x86_64-apple-darwin
 
@@ -47,10 +46,9 @@ jobs:
       - name: Read Rust toolchain
         run: echo "RUST_TOOLCHAIN=$(cat rust-toolchain)" >> $GITHUB_ENV
 
-      - uses: actions-rs/toolchain@v1
+      - uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: ${{ env.RUST_TOOLCHAIN }}
-          override: true
 
       - name: Run rust_c zcash tests
         run: cd rust && cargo +$RUST_TOOLCHAIN test -p rust_c --no-default-features --features simulator-cypherpunk --lib -- zcash common::ur
